@@ -28,7 +28,7 @@ function CartProducts({ totalPrice }) {
             className={`relative h-[6rem] bg-silver/10 font-secondary flex gap-8 px-8 py-2 rounded-lg border-white/20`}
           >
             <img
-              src={`http://192.168.1.6:1337${product.imgUrl}`}
+              src={`https://arabico-strapi.onrender.com${product.imgUrl}`}
               alt=""
               className="w-[2rem] h-[5rem] object-contain"
             />
