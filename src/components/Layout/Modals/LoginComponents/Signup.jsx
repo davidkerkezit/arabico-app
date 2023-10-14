@@ -8,6 +8,8 @@ import {
   AiOutlineEyeInvisible,
   AiOutlineLogin,
 } from "react-icons/ai";
+import { setToken } from "../../helpers";
+import { API } from "../../constant";
 function Signup({ registration }) {
   // Registration information
   const name = useRef("");
@@ -59,7 +61,22 @@ function Signup({ registration }) {
       registration("");
     }
   };
+  //
+  //
+  //
+  //
+  const onFinish = async () => {
+    const response = await fetch(`${API}/auth/local/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
+    });
 
+    const data = await response.json();
+    setToken(data.jwt);
+  };
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

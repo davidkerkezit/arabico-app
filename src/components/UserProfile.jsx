@@ -7,6 +7,9 @@ import CountUp from "react-countup";
 import { FaChevronRight } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { LuLogOut } from "react-icons/lu";
+import { removeToken, setToken } from "../helpers";
+import { add } from "lodash";
+
 function UserProfile({
   user,
   fiveFavoritesPerfume,
@@ -17,6 +20,11 @@ function UserProfile({
   const commentsSection = useRef();
   const ratingsSection = useRef();
   const navigate = useNavigate();
+
+  const handleLogout = () => {
+    removeToken();
+    navigate("/", { replace: true });
+  };
   const logoutHandler = () => {
     localStorage.removeItem("userId");
     localStorage.removeItem("token");
@@ -24,7 +32,7 @@ function UserProfile({
 
     navigate("/");
   };
-
+  console.log(user);
   return (
     <div className="h-full pb-8 flex flex-col gap-5 ">
       <div className="relative flex flex-col md:flex-col-reverse  ">
@@ -104,6 +112,25 @@ function UserProfile({
         <h3 className="text-whiteness logo-secondary-headers font-semibold uppercase text-center text-lg py-2  bg-gradient-to-r from-coal via-zinc-800/50 to-coal  border-y-[1px] border-light-gold/30">
           Top rated perfumes
         </h3>
+        {/*  */}
+        {/*  */}
+        {user ? (
+          <button className="bg-red-500 text-whiteness" onClick={handleLogout}>
+            LOGOUT
+          </button>
+        ) : (
+          <button
+            className="bg-red-500 text-whiteness"
+            onClick={() => {
+              setToken(12314);
+            }}
+          >
+            LOGIN
+          </button>
+        )}
+
+        {/*  */}
+        {/*  */}
         <Products data={fiveFavoritesPerfume} />
       </div>
       <div ref={commentsSection}>

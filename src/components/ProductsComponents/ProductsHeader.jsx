@@ -13,15 +13,17 @@ function ProductsHeader({ setShowSortOption, showSortOption }) {
   const submit = useSubmit();
 
   useEffect(() => {
-    submit(
-      {
-        sortOption: sortOption,
-      },
-      {
-        method: "post",
-      }
-    );
-  }, [sortOption]);
+    if (location.pathname === "/perfumes") {
+      submit(
+        {
+          sortOption: sortOption,
+        },
+        {
+          method: "post",
+        }
+      );
+    }
+  }, [sortOption, location.pathname]);
   return (
     <div className="flex justify-between mx-4 my-4 ss:mx-15 sm:mx-32 md:mx-20 md:py-4 lg:mx-30 xl:mx-60">
       <h4 className="logo-secondary-headers font-bold text-lg text-whiteness md:text-xl ">

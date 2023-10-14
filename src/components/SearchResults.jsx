@@ -20,20 +20,21 @@ function SearchResults({ showResults }) {
 
       setSearchedPerfumes(data.data);
     } else if (option === "users") {
-
       const res = await fetch(
         `https://arabico-strapi.onrender.com/api/arabicousers?populate=*&filters[name][$containsi]=${value}`
       );
 
       const data = await res.json();
-  
+
       setSearchedPerfumes(data.data);
     }
   };
-
+  console.log(showResults);
   useEffect(() => {
-    fetchData();
-  }, [value]);
+    if (showResults.showSearchResults === "open" && value !== "") {
+      fetchData();
+    }
+  }, [value, showResults.showSearchResults]);
 
   return (
     <div className="relative  ">
@@ -88,7 +89,7 @@ function SearchResults({ showResults }) {
                     {product.attributes.title}
                   </p>
                   <img
-                    src={`https://arabico-strapi.onrender.com/${product.attributes.perfume.data.attributes.url}`}
+                    src={`https://arabico-strapi.onrender.com${product.attributes.perfume.data.attributes.url}`}
                     alt=""
                     className="w-[4.2rem] h-[8rem] object-contain group-hover:scale-105 duration-150"
                   />

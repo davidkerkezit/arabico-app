@@ -39,6 +39,7 @@ function Products({ data, totalAmountOfPerfume }) {
   const location = useLocation();
   const submit = useSubmit();
   const navigate = useNavigate();
+
   // ADD TO CART HANDLER
   const addToCartHandler = (p) => {
     // ANIMATION

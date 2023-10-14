@@ -70,7 +70,7 @@ export async function showMoreAction({ request }) {
     const res = await fetch(
       `https://arabico-strapi.onrender.com/api/perfumes?populate=*${apiPagination}${apiSort}&filters[soon][$ne][1]=true`
     );
-
+   
     const data = await res.json();
     return data.data;
   } else {

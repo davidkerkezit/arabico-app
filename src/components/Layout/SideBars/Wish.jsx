@@ -19,8 +19,10 @@ function Wish({ wish, setWish, showWish, setShowWish }) {
     setWishPerfumes(perfumes);
   };
   useEffect(() => {
-    fetchPerfumes();
-  }, [wish]);
+    if (showWish === "open") {
+      fetchPerfumes();
+    }
+  }, [showWish, wish]);
   const removeWish = async (id) => {
     let storedWishes = JSON.parse(localStorage.getItem("wishList"));
     const index = storedWishes.indexOf(id);
